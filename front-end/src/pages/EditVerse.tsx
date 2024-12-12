@@ -63,7 +63,7 @@ function EditVerse() {
             rows={10}
             defaultValue={data && data.prophecy}
             required
-            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre'
+            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre-wrap'
           ></textarea>
         </div>
 

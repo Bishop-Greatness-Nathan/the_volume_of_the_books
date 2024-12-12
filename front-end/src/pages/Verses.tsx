@@ -21,10 +21,10 @@ function Verses() {
     <div className='mx-5 mb-10'>
       {chapter && (
         <div>
-          <h1 className='uppercase text-center font-bold font-sans italic text-[var(--primaryColor)] md:text-2xl'>
+          <h1 className='uppercase text-center font-bold font-sans italic text-[var(--primaryColor)] text-sm md:text-2xl'>
             {chapter.name}, {chapter.book} : Month of {chapter.word}
           </h1>
-          <p className='text-center italic font-semibold md:w-[50%] m-auto mt-2 capitalize text-xs md:text-base text-[var(--primaryText)]'>
+          <p className='text-center italic font-semibold md:w-[50%] m-auto my-3 capitalize text-xs md:text-base text-[var(--primaryText)] whitespace-pre-wrap'>
             "{chapter.declaration}"
           </p>
         </div>

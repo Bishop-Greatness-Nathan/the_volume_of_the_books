@@ -78,7 +78,7 @@ function EditChapter() {
             rows={10}
             defaultValue={data && data.declaration}
             required
-            className='uppercase border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none'
+            className='uppercase border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre-wrap'
           ></textarea>
         </div>
 

@@ -66,7 +66,7 @@ function CreateBook() {
             id=''
             cols={30}
             rows={10}
-            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none'
+            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre-wrap'
             required
           ></textarea>
         </div>

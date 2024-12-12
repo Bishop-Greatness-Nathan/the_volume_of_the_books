@@ -40,12 +40,12 @@ function SingleVerse({ index, _id, date, prophecy }: VerseType) {
           <Link to={`/edit-verse/${_id}`}>
             <FaEdit />
           </Link>
-          <button onClick={deleteVerse}>
+          <button onClick={deleteVerse} disabled>
             <FaTrash />
           </button>
         </span>
       </div>
-      <p className='mb-3 text-[var(--primaryText)] text-sm md:text-base whitespace-pre-wrap'>
+      <p className='mb-3 text-[var(--primaryText)] text-xs md:text-base whitespace-pre-wrap'>
         {index ? index + 1 : 1}. {prophecy}
       </p>
     </div>

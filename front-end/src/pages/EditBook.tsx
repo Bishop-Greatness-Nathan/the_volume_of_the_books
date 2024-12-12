@@ -78,7 +78,7 @@ function EditBook() {
             cols={30}
             rows={10}
             defaultValue={data && data.synopsis}
-            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none'
+            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre-wrap'
             required
           ></textarea>
         </div>

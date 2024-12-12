@@ -58,7 +58,7 @@ function CreateVerse() {
             cols={30}
             rows={10}
             required
-            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre'
+            className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre-wrap'
           ></textarea>
         </div>
 

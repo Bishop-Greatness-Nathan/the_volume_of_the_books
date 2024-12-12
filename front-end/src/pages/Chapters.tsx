@@ -38,10 +38,10 @@ function Chapters() {
     <div>
       {book && (
         <div key={book._id}>
-          <h1 className='uppercase text-center font-bold font-sans italic text-[var(--primaryColor)] md:text-2xl'>
+          <h1 className='uppercase text-center font-bold font-sans italic text-[var(--primaryColor)] text-sm md:text-2xl'>
             {book.year} - {book.word}
           </h1>
-          <p className='text-center italic font-semibold md:w-[50%] m-auto mt-2 mb-2 capitalize text-sm md:text-base px-2 text-[var(--primaryText)]'>
+          <p className='text-center italic md:w-[50%] m-auto my-2 capitalize text-xs md:text-base px-2 text-[var(--primaryText)] whitespace-pre-wrap'>
             "{book.synopsis}"
           </p>
         </div>
@@ -58,18 +58,20 @@ function Chapters() {
               >
                 <Link
                   to={`/edit-chapter/${chapter.book}-${chapter.name}`}
-                  className='text-sm md:text-base hover:text-[var(--hoverColor)]'
+                  className='text-xs md:text-base hover:text-[var(--hoverColor)]'
                 >
                   <FaEdit />
                 </Link>
                 <Link
                   to={`/verses/${year}-${chapter.name}`}
-                  className='hover:text-[var(--hoverColor)] capitalize'
+                  className='hover:text-[var(--hoverColor)] capitalize text-xs'
                 >
                   {chapter.name} "{chapter.word}"
                 </Link>
                 <button
+                  disabled
                   onClick={() => mutate(`${chapter.book}-${chapter.name}`)}
+                  className='text-xs'
                 >
                   <FaTrash />
                 </button>

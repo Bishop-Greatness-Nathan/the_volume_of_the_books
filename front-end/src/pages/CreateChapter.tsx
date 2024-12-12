@@ -74,7 +74,7 @@ function CreateChapter() {
 
         <button
           type='submit'
-          className='border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize'
+          className='border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize whitespace-pre-wrap'
         >
           submit
         </button>
