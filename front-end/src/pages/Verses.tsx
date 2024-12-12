@@ -24,7 +24,7 @@ function Verses() {
           <h1 className='uppercase text-center font-bold font-sans italic text-[var(--primaryColor)] text-sm md:text-2xl'>
             {chapter.name}, {chapter.book} : Month of {chapter.word}
           </h1>
-          <p className='text-center italic font-semibold md:w-[50%] m-auto my-3 capitalize text-xs md:text-base text-[var(--primaryText)] whitespace-pre-wrap'>
+          <p className='capitalize text-center italic font-semibold md:w-[50%] m-auto my-3 text-xs md:text-base text-[var(--primaryText)] whitespace-pre-wrap'>
             "{chapter.declaration}"
           </p>
         </div>

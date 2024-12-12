@@ -44,7 +44,11 @@ const singleVerse = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.singleVerse = singleVerse;
 const editVerse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const verse = yield verse_1.default.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    const { date, prophecy } = req.body;
+    if (!date || !prophecy)
+        throw new customErrors_1.BadRequestError("please provide all values");
+    const chapter = constants_1.months[new Date(date).getMonth()];
+    const verse = yield verse_1.default.findOneAndUpdate({ _id: req.params.id }, Object.assign(Object.assign({}, req.body), { chapter }), {
         runValidators: true,
         new: true,
     });

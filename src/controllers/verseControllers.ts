@@ -31,10 +31,18 @@ export const singleVerse = async (req: Request, res: Response) => {
 }
 
 export const editVerse = async (req: Request, res: Response) => {
-  const verse = await Verse.findOneAndUpdate({ _id: req.params.id }, req.body, {
-    runValidators: true,
-    new: true,
-  })
+  const { date, prophecy } = req.body
+  if (!date || !prophecy) throw new BadRequestError("please provide all values")
+  const chapter = months[new Date(date).getMonth()]
+
+  const verse = await Verse.findOneAndUpdate(
+    { _id: req.params.id },
+    { ...req.body, chapter },
+    {
+      runValidators: true,
+      new: true,
+    }
+  )
   res.status(StatusCodes.OK).json({ verse })
 }
 
