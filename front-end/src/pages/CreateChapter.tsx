@@ -2,13 +2,11 @@ import { FormEvent, useEffect, useState } from "react"
 import { useCreateChapter } from "../queries/chapters"
 import { toast } from "react-toastify"
 import { isAxiosError } from "axios"
-import { useNavigate } from "react-router-dom"
 
 function CreateChapter() {
   const [date, setDate] = useState("")
   const [word, setWord] = useState("")
   const [declaration, setDeclaration] = useState("")
-  const navigate = useNavigate()
   const { mutate, isSuccess, isError, error, isLoading } = useCreateChapter()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
