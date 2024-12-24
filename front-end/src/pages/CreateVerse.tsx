@@ -1,23 +1,25 @@
-import { FormEvent, useEffect } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { useCreateVerse } from "../queries/verses"
 import { toast } from "react-toastify"
 import { isAxiosError } from "axios"
 
 function CreateVerse() {
-  const { mutate, isSuccess, isError, error } = useCreateVerse()
+  const [date, setDate] = useState("")
+  const [prophecy, setProphecy] = useState("")
+  const { mutate, isSuccess, isError, error, isLoading } = useCreateVerse()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData)
-    console.log(data)
     mutate(data)
   }
 
   const responses = () => {
     if (isSuccess) {
-      toast.success("data created")
-      location.reload()
+      toast.success("Verse created. Create another verse?")
+      setDate("")
+      setProphecy("")
     }
     if (isError) {
       if (isAxiosError(error)) {
@@ -45,8 +47,10 @@ function CreateVerse() {
           <input
             type='date'
             name='date'
+            value={date}
             required
             className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none'
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
 
@@ -58,15 +62,20 @@ function CreateVerse() {
             cols={30}
             rows={10}
             required
+            value={prophecy}
             className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none whitespace-pre-wrap'
+            onChange={(e) => setProphecy(e.target.value)}
           ></textarea>
         </div>
 
         <button
           type='submit'
-          className='border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize'
+          className={`border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize ${
+            isLoading && "cursor-wait"
+          }`}
+          disabled={isLoading}
         >
-          submit
+          {isLoading ? "submitting" : "submit"}
         </button>
       </form>
     </main>

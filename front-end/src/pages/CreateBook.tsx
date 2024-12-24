@@ -2,8 +2,10 @@ import { FormEvent, useEffect } from "react"
 import { useCreateBook } from "../queries/books"
 import { toast } from "react-toastify"
 import { isAxiosError } from "axios"
+import { useNavigate } from "react-router-dom"
 
 function CreateBook() {
+  const navigate = useNavigate()
   const { mutate, isSuccess, isError, error } = useCreateBook()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -16,7 +18,7 @@ function CreateBook() {
   const responses = () => {
     if (isSuccess) {
       toast.success("data created")
-      location.reload()
+      navigate("/")
     }
     if (isError) {
       if (isAxiosError(error)) {

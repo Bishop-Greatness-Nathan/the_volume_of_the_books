@@ -7,7 +7,7 @@ import { isAxiosError } from "axios"
 function EditVerse() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { mutate, isSuccess, isError, error } = useEditVerse()
+  const { mutate, isSuccess, isError, error, isLoading } = useEditVerse()
   const { data } = useGetVerse(id as string)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -69,9 +69,12 @@ function EditVerse() {
 
         <button
           type='submit'
-          className='border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize'
+          className={`border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize ${
+            isLoading && "cursor-wait"
+          }`}
+          disabled={isLoading}
         >
-          submit
+          {isLoading ? "submitting" : "submit"}
         </button>
       </form>
     </main>

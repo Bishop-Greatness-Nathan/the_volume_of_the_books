@@ -8,7 +8,7 @@ import Loading from "../components/Loading"
 
 function Verses() {
   const { id } = useParams()
-
+  
   const { data: chapter } = useSingleChapter(id as string)
 
   const { data, isError, isLoading } = useGetVerses(id as string)

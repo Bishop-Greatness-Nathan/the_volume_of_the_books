@@ -1,10 +1,15 @@
-import { FormEvent, useEffect } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { useCreateChapter } from "../queries/chapters"
 import { toast } from "react-toastify"
 import { isAxiosError } from "axios"
+import { useNavigate } from "react-router-dom"
 
 function CreateChapter() {
-  const { mutate, isSuccess, isError, error } = useCreateChapter()
+  const [date, setDate] = useState("")
+  const [word, setWord] = useState("")
+  const [declaration, setDeclaration] = useState("")
+  const navigate = useNavigate()
+  const { mutate, isSuccess, isError, error, isLoading } = useCreateChapter()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -15,8 +20,10 @@ function CreateChapter() {
 
   const responses = () => {
     if (isSuccess) {
-      toast.success("data created")
-      location.reload()
+      toast.success("Chapter created. Create another chapter")
+      setDate("")
+      setWord("")
+      setDeclaration("")
     }
     if (isError) {
       if (isAxiosError(error)) {
@@ -45,6 +52,8 @@ function CreateChapter() {
           <input
             type='date'
             name='date'
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
             required
             className='border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none'
           />
@@ -56,6 +65,8 @@ function CreateChapter() {
           <input
             type='text'
             name='word'
+            value={word}
+            onChange={(e) => setWord(e.target.value)}
             required
             className='uppercase border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none'
           />
@@ -67,6 +78,8 @@ function CreateChapter() {
             id=''
             cols={30}
             rows={10}
+            value={declaration}
+            onChange={(e) => setDeclaration(e.target.value)}
             required
             className='uppercase border p-1 w-full border-[var(--primaryColor)] rounded-sm outline-none'
           ></textarea>
@@ -74,9 +87,12 @@ function CreateChapter() {
 
         <button
           type='submit'
-          className='border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize whitespace-pre-wrap'
+          className={`border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize whitespace-pre-wrap ${
+            isLoading && "cursor-wait"
+          }`}
+          disabled={isLoading}
         >
-          submit
+          {isLoading ? "submitting" : "submit"}
         </button>
       </form>
     </main>

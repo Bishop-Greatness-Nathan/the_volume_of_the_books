@@ -8,7 +8,7 @@ function EditChapter() {
   const navigate = useNavigate()
   const { id } = useParams()
 
-  const { mutate, isSuccess, isError, error } = useEditChapter()
+  const { mutate, isSuccess, isError, error, isLoading } = useEditChapter()
 
   const { data } = useSingleChapter(id as string)
 
@@ -84,9 +84,12 @@ function EditChapter() {
 
         <button
           type='submit'
-          className='border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize'
+          className={`border p-1 w-full bg-[var(--primaryColor)] rounded-sm text-white capitalize whitespace-pre-wrap ${
+            isLoading && "cursor-wait"
+          }`}
+          disabled={isLoading}
         >
-          submit
+          {isLoading ? "submitting" : "submit"}
         </button>
       </form>
     </main>
